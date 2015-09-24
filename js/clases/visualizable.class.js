@@ -1,3 +1,5 @@
 function Visualizable() {
-    this.dibujar = function(contexto){};//metodo abstracto
+    //metodo abstracto
+    this.dibujar = function (contexto) {
+    };
 }

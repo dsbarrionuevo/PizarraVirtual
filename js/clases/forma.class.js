@@ -4,5 +4,7 @@ function Forma(x, y) {
     this.y = y;
     this.ancho;
     this.alto;
-    this.dibujar = function (contexto) {};//metodo abstracto
+    //metodo abstracto
+    this.dibujar = function (contexto) {
+    };
 }

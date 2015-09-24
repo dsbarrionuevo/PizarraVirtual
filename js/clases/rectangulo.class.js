@@ -4,7 +4,8 @@ function Rectangulo(x, y, ancho, alto) {
     this.ancho = ancho;
     this.alto = alto;
     this.dibujar = function (contexto) {
-        this.__proto__.dibujar(contexto);//llamo al metodo del padre
+        //llamo al metodo del padre
+        this.__proto__.dibujar(contexto);
         contexto.fillRect(this.x, this.y, this.ancho, this.alto);
     };
 }
