@@ -1,10 +1,5 @@
 Forma.prototype = new Visualizable;
-function Forma(x, y) {
-    this.x = x;
-    this.y = y;
-    this.ancho;
-    this.alto;
-    //metodo abstracto
-    this.dibujar = function (contexto) {
-    };
+function Forma(x, y, ancho, alto, estilo) {
+    Visualizable.call(this, x, y, ancho, alto, estilo);
+    //por ahora tiene lo mismo que el padre por lo que esta vacio...
 }
