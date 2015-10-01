@@ -8,6 +8,7 @@ window.addEventListener("load", function () {
         contexto.fillStyle = "#f00";
     }));
     var c2 = new Circulo(papel.canvas.width / 2, papel.canvas.height / 2, 100);
+    
     papel.agregarObjeto(r1);
     papel.agregarObjeto(r2);
     papel.agregarObjeto(c1);
