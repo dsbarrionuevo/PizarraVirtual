@@ -1,16 +1,19 @@
 RectanguloRedondeado.prototype = new Forma;
 
-function RectanguloRedondeado(x, y, alto, ancho, estilo) {
+function RectanguloRedondeado(x, y, alto, ancho, radio, estilo) {
     Forma.call(this, x, y, ancho, alto, estilo);
-
+    this.radio = radio;
+    if (this.radio === undefined) {
+        this.radio = 5;//valor por defecto
+    }
     this.dibujar = function (contexto) {
         this.__proto__.dibujar(contexto);
         this.estilo.preparar(contexto);
-        rectanguloRedondeado(contexto,this.x, this.y, this.ancho, this.alto, 45);
+        rectanguloRedondeado(contexto, this.x, this.y, this.ancho, this.alto, this.radio);
         this.estilo.terminar(contexto);
     };
-    
-    function rectanguloRedondeado(ctx,x,y,width,height,radius){
+
+    function rectanguloRedondeado(ctx, x, y, width, height, radius) {
         ctx.beginPath();
         ctx.moveTo(x, y + radius);
         ctx.lineTo(x, y + height - radius);
@@ -21,6 +24,6 @@ function RectanguloRedondeado(x, y, alto, ancho, estilo) {
         ctx.quadraticCurveTo(x + width, y, x + width - radius, y);
         ctx.lineTo(x + radius, y);
         ctx.quadraticCurveTo(x, y, x, y + radius);
-    };
+    }
 }
 

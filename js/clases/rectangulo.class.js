@@ -8,4 +8,12 @@ function Rectangulo(x, y, ancho, alto, estilo) {
         contexto.rect(this.x, this.y, this.ancho, this.alto);
         this.estilo.terminar(contexto);
     };
+    this.intersecta = function (x, y) {
+        this.__proto__.intersecta(x, y);
+        return ((x > this.x && x < this.x + this.ancho) && (y > this.y && x < this.y + this.alto));
+    };
+    this.mover = function (x, y) {
+        this.x = this.x + x;
+        this.y = this.y + y;
+    };
 }
