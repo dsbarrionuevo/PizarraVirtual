@@ -16,6 +16,10 @@ function Triangulo(x, y, ancho, alto, estilo) {
         ctx.lineTo(x, (y + alto));
         ctx.lineTo((x + ancho), (y + alto));
         ctx.lineTo(x + (ancho / 2), y);
-    }
+    };
+    
+    this.intersecta = function(x,y){
+        
+    };
 }
 

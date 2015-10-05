@@ -21,4 +21,29 @@ function Linea(xi, yi, xf, yf, estilo) {
         contexto.stroke();
         this.estilo.terminar(contexto);
     };
+    
+    this.intersecta = function (x,y, contexto){
+        this.__proto__.intersecta(x,y);
+        
+        var x1 = this.x - contexto.lineWidth()/2;
+        var y1 = this.y - contexto.lineWidth()/2;
+        var x2 = this.xf - contexto.lineWidth()/2;
+        var y2 = this.yf - contexto.lineWidth()/2;
+        
+        var d1 = (y2-y1)*x + (x1-x2)*y + (x2*y1-y2*x1);
+        
+        x1 = this.x + contexto.lineWidth()/2;
+        y1 = this.y + contexto.lineWidth()/2;
+        x2 = this.xf + contexto.lineWidth()/2;
+        y2 = this.yf + contexto.lineWidth()/2;
+        
+        var d2 = (y2-y1)*x + (x1-x2)*y + (x2*y1-y2*x1);
+        
+        if(x>this.x && x<this.xf && y>this.y && y<this.xf){
+            return ((d1<=0) && (d2>=0));
+        }
+        else{
+            return false;
+        }
+    };
 }
