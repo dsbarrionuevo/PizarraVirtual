@@ -36,6 +36,9 @@ function Papel(canvas) {
         }
         return objetos;
     };
+    this.cambiarHerramienta = function (nombreHerramienta) {
+        instancia.panel.cambiarHerramienta(nombreHerramienta);
+    };
     //eventos en canvas
     this.canvas.addEventListener("click", function (evt) {
         //no olvidarse que evt.offsetX/Y no son compatibles con todos los navegadores

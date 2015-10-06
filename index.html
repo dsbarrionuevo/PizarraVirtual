@@ -4,9 +4,10 @@
         <title>Pizarra virtual</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style>
-            canvas{border:1px solid #000;}
-        </style>
+        <!-- CSS -->
+        <link href="css/index.css" type="text/css" rel="stylesheet">
+        <!-- JS -->
+        <script src="js/lib/jquery-1.11.3.min.js" type="text/javascript"></script>
         <script src="js/clases/dibujo/estilo.class.js" type="text/javascript"></script>
         <script src="js/clases/dibujo/visualizable.class.js" type="text/javascript"></script>
         <script src="js/clases/dibujo/forma.class.js" type="text/javascript"></script>
@@ -24,8 +25,33 @@
         <script src="js/clases/dibujo/capa.class.js" type="text/javascript"></script>
         <script src="js/clases/dibujo/papel.class.js" type="text/javascript"></script>
         <script src="js/index.js" type="text/javascript"></script>
+        <script src="js/panel_herramientas.js" type="text/javascript"></script>
     </head>
     <body>
+        <div id="panelHerramientas">
+            <ul>
+                <li>
+                    <button id="btnHerramientaSeleccionar" title="Seleccionar">
+                        Seleccionar
+                    </button>
+                </li>
+                <li>
+                    <button id="btnHerramientaMover" title="Mover">
+                        Mover
+                    </button>
+                </li>
+                <li>
+                    <button id="btnHerramientaEscalar" title="Escalar">
+                        Escalar
+                    </button>
+                </li>
+                <li>
+                    <button id="btnHerramientaMover" title="Rotar">
+                        Rotar
+                    </button>
+                </li>
+            </ul>
+        </div>
         <canvas width="800" height="600">
             Su navegador no soporta canvas
         </canvas>
