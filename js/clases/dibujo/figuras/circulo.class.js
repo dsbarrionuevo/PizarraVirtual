@@ -17,6 +17,15 @@ function Circulo(x, y, radio, estilo) {
         contexto.arc(this.x + this.radio, this.y + this.radio, this.radio, 0, 2 * Math.PI);
         this.estilo.terminar(contexto);
     };
+    this.marcar = function (contexto) {
+        this.__proto__.marcar();
+        contexto.save();
+        contexto.strokeStyle = "#00f";
+        contexto.lineWidth = 1;
+        contexto.rect(this.x, this.y, this.ancho, this.alto);
+        contexto.stroke();
+        contexto.restore();
+    };
     this.intersecta = function (x, y) {
         this.__proto__.intersecta(x, y);
         var cx = this.x + this.radio;

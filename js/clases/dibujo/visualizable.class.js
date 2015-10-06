@@ -20,6 +20,15 @@ function Visualizable(x, y, ancho, alto, estilo) {
     //metodo abstracto
     this.dibujar = function (contexto) {
     };
+    
+    /**
+     * _abstract
+     * Resalta con un contorno particular el objeto visible
+     * @returns {undefined}
+     */
+    this.marcar = function (contexto) {
+    };
+    
     /**
      * _abstract
      * Verifica si un punto está dentro del objeto visualizable
