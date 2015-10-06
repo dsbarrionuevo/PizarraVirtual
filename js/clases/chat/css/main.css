@@ -1,0 +1,63 @@
+body,
+textarea,
+input {	
+	font: 14px 'Trebuchet MS', sans-serif;
+}
+
+.chat {
+}
+
+.escribiendo,
+.chatMessages,
+.chatTextArea,
+.chatName,
+.nicks {
+	border:1px solid #bbb;
+	max-width: 300px;
+}
+
+.chatMessages {
+	height:300px;
+	width: 100%;
+	overflow-y:scroll;
+	padding: 10px;
+}
+
+.chatMessage {
+	margin-bottom:8px;
+}
+
+.chatName {
+	max-width:230px; 
+	padding: 10px;
+	border-bottom: 0;
+	margin: 0;
+	outline: none;
+}
+
+.chatTextArea {
+	width: 100%;
+	padding: 10px;
+	border-top: 0;
+	margin: 0;
+	outline: none;
+}
+
+.chatStatus {
+	color:#bbb;
+}
+
+.nicks {
+	height: 30px;
+	width: 100%;
+	padding: 10px;
+}
+
+.escribiendo {
+	height: 12px;
+	border-top: 0;
+	border-bottom: 0;
+	width: 100%;
+	padding: 10px;
+	color: #0ff;
+}
