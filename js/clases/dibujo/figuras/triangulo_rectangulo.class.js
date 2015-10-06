@@ -18,6 +18,30 @@ function TrianguloRectangulo(x, y, ancho, alto, estilo) {
         ctx.lineTo((x + ancho), (y + alto));
         ctx.lineTo(x, y);
     }
+    
+    this.intersecta = function(x,y){
+        this.__proto__.intersecta(x,y);
+        
+        var x1 = this.x;
+        var y1 = this.y + this.alto;
+        var x2 = this.x+this.ancho;
+        var y2 = this.y + this.alto;
+        
+        var d1 = (y2-y1)*x + (x1-x2)*y + (x2*y1-y2*x1);
+        console.log(d1);
+        x1 = this.x;
+        y1 = this.y;
+        x2 = this.x;
+        y2 = this.y+this.alto;
+        
+        var d2 = (y2-y1)*x + (x1-x2)*y + (x2*y1-y2*x1);
+        console.log(d2);
+        x2 = this.x + this.ancho;
+        
+        var d3 = (y2-y1)*x + (x1-x2)*y + (x2*y1-y2*x1);
+        console.log(d3);
+        return (d1>=0 && d2>=0 && d3<=0);
+    };
 }
 
 

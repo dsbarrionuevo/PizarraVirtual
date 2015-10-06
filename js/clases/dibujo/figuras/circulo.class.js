@@ -30,6 +30,9 @@ function Circulo(x, y, radio, estilo) {
         this.__proto__.intersecta(x, y);
         var cx = this.x + this.radio;
         var cy = this.y + this.radio;
-        return ((Math.sqrt((x - cx) * (x - cx) + (y - cy) * (y - cy))) < this.radio);
+        return ((Math.sqrt((x - cx) * (x - cx) + (y - cy) * (y - cy))) <= this.radio);
+    };
+    this.escalar = function (x, y) {
+        this.radio= Math.sqrt(Math.pow(x,2)+Math.pow(y,2));
     };
 }

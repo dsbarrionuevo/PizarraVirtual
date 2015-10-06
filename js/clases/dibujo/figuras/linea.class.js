@@ -21,29 +21,34 @@ function Linea(xi, yi, xf, yf, estilo) {
         contexto.stroke();
         this.estilo.terminar(contexto);
     };
-    
-    this.intersecta = function (x,y, contexto){
+    this.intersecta = function (x,y, anchoLinea){
         this.__proto__.intersecta(x,y);
         
-        var x1 = this.x - contexto.lineWidth()/2;
-        var y1 = this.y - contexto.lineWidth()/2;
-        var x2 = this.xf - contexto.lineWidth()/2;
-        var y2 = this.yf - contexto.lineWidth()/2;
+        var mitadLinea = anchoLinea/2;
+        
+        var x1 = this.x;
+        var y1 = this.y - mitadLinea;
+        var x2 = this.xf;
+        var y2 = this.yf - mitadLinea;
         
         var d1 = (y2-y1)*x + (x1-x2)*y + (x2*y1-y2*x1);
         
-        x1 = this.x + contexto.lineWidth()/2;
-        y1 = this.y + contexto.lineWidth()/2;
-        x2 = this.xf + contexto.lineWidth()/2;
-        y2 = this.yf + contexto.lineWidth()/2;
+        x1 = this.x;
+        y1 = this.y + mitadLinea;
+        x2 = this.xf ;
+        y2 = this.yf + mitadLinea;
         
         var d2 = (y2-y1)*x + (x1-x2)*y + (x2*y1-y2*x1);
         
-        if(x>this.x && x<this.xf && y>this.y && y<this.xf){
+        if(x>=this.x && x<=this.xf && y>=this.y && y<=this.xf){
             return ((d1<=0) && (d2>=0));
         }
         else{
             return false;
         }
+    };
+    this.escalar = function (x, y) {
+        this.xf = this.xf + x;
+        this.yf = this.yf + y;
     };
 }

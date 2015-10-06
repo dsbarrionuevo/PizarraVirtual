@@ -41,4 +41,10 @@ function Flecha(xi, yi, xf, yf, largoPunta, estilo) {
         contexto.stroke();
         this.estilo.terminar(contexto);
     };
+    
+    this.mover = function (x, y) {
+        this.x = this.x + x;
+        this.y = this.y + y;
+    };
+    
 }
