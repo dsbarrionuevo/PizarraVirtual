@@ -12,7 +12,16 @@ Forma.prototype = new Visualizable;
 function Forma(x, y, ancho, alto, estilo) {
     Visualizable.call(this, x, y, ancho, alto, estilo);
     //por ahora tiene lo mismo que el padre por lo que esta vacio...
-    
+    this.marcar = function (contexto) {
+        this.__proto__.marcar(contexto);
+        contexto.save();
+        contexto.beginPath();
+        contexto.strokeStyle = "#00f";
+        contexto.lineWidth = 1;
+        contexto.rect(this.x, this.y, this.ancho, this.alto);
+        contexto.stroke();
+        contexto.restore();
+    };
     this.mover = function (x, y) {
         this.x = this.x + x;
         this.y = this.y + y;
