@@ -4,4 +4,5 @@ window.addEventListener("load", function () {
         $(this).addClass("seleccionada");
         papel.cambiarHerramienta($(this).prop("title"));
     });
+    $("#panelHerramientas button[title='Seleccionar']").addClass("seleccionada");
 });

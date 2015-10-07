@@ -5,8 +5,8 @@ HerramientaSeleccion.prototype = new Herramienta;
  * @param {Papel} papel Papal de dibujo
  * @returns {HerramientaSeleccion}
  */
-function HerramientaSeleccion(nombre, papel) {
-    Herramienta.call(this, nombre, papel);
+function HerramientaSeleccion(papel) {
+    Herramienta.call(this, "Seleccionar", papel);
     this.ultimoSeleccionado = null;
     this.onclick = function (evento) {
         this.__proto__.onclick(evento);

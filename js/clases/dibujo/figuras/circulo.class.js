@@ -23,7 +23,12 @@ function Circulo(x, y, radio, estilo) {
         var cy = this.y + this.radio;
         return ((Math.sqrt((x - cx) * (x - cx) + (y - cy) * (y - cy))) <= this.radio);
     };
+    this.mover = function (x, y) {
+        this.__proto__.mover(x, y);
+        this.x = this.x + x;
+        this.y = this.y + y;
+    };
     this.escalar = function (x, y) {
-        this.radio= Math.sqrt(Math.pow(x,2)+Math.pow(y,2));
+        this.radio = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
     };
 }

@@ -12,6 +12,7 @@ function PanelHerramientas(papel) {
         //console.log("Herramienta con nombre " + nombreHerramienta + " no encontrada");
     };
     //set por defecto de herramientas
-    this.herramientas.push(new HerramientaSeleccion("Seleccionar", this.papel));
+    this.herramientas.push(new HerramientaSeleccion(this.papel));
+    this.herramientas.push(new HerramientaMover(this.papel));
     this.herramientaActual = this.herramientas[0];
 }
