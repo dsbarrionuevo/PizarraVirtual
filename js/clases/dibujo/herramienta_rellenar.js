@@ -10,30 +10,27 @@ function HerramientaSeleccion(papel) {
         //Obtengo la matriz de los colores en cada pixel del canvas
         var datos = datosImagen.data;
 
-
-        var alto = datosImagen.heigth;
         var ancho = datosImagen.width;
         var rojo, verde, azul, alpha;
 
         //Obtengo los colores del punto dado del canvas
-        var componentes = [
-            rojo = datos[ (py * ancho + x) * 4 + 0],
-            verde = datos[ (py * ancho + x) * 4 + 1],
-            azul = datos[ (py * ancho + x) * 4 + 2],
-            alpha = datos[ (py * ancho + x) * 4 + 3]
-        ];
+        rojo = datos[ (py * ancho + x) * 4 + 0];
+        verde = datos[ (py * ancho + x) * 4 + 1];
+        azul = datos[ (py * ancho + x) * 4 + 2];
+        alpha = datos[ (py * ancho + x) * 4 + 3];
 
         var rojoC, verdeC, azulC, alphaC;
-
         var x;
+        //Me desplazo en el eje x hacia derecha hasta encontrar el borde del area a pintar
         for (x = px; x < ancho; x++) {
             rojoC = datos[(py * ancho + x) * 4 + 0];
             verdeC = datos[(py * ancho + x) * 4 + 1];
             azulC = datos[(py * ancho + x) * 4 + 2];
             alphaC = datos[(py * ancho + x) * 4 + 3];
 
+            //Cuando el color cambia corto el ciclo
             if (rojoC !== rojo || verdeC !== verde || azulC !== azul || alphaC !== alpha) {
-                x++;
+                x--;
                 break;
             }
         }
