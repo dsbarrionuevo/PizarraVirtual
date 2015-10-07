@@ -31,6 +31,6 @@ function Forma(x, y, ancho, alto, estilo) {
         this.alto = this.alto + y;
     };
     this.rotar = function (angulo) {
-        
+        // Probando
     };
 }
