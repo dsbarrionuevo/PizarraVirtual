@@ -44,6 +44,14 @@ function Papel(canvas) {
         //no olvidarse que evt.offsetX/Y no son compatibles con todos los navegadores
         instancia.panel.herramientaActual.onclick(evt);
     });
+    
+    // Este evento permite detectar el click derecho del mouse.
+    // preventDefault() evita que se despliegue un menu contextual
+    this.canvas.addEventListener("contextmenu", function (evt){
+        evt.preventDefault();
+        instancia.panel.herramientaActual.onclick(evt);
+    });
+    
     //por defecto creo una capa vacia, con orden 0, es decir el fondo del papel
     this.agregarCapa();
     //seteo como capa actual a la de fondo, recien insertada
