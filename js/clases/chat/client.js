@@ -6,7 +6,8 @@ $(document).on('ready', function escuchar(){
 
 
 	ws.on('mensajeServer', function recibir(datosServer){
-		$('#conversacion').append($(' <p>').text(datosServer.nick +": " +datosServer.mensaje));	
+		$('#conversacion').append($(' <p>').text(datosServer.nick +": " +datosServer.mensaje));
+		$('#conversacion').animate({scrollTop: $('#conversacion').height()}, 800);
 	});
 
 
@@ -47,6 +48,7 @@ $(document).on('ready', function escuchar(){
 	ws.on('nickAceptado', function(user){
 		nick = user; //Corregir cuando se mande el evento solo al cliente que corresponde
 		$("#enviarNick").prop('disabled',true);
+		$("#nick").prop('disabled',true);
 	});
 
 	$('#mensaje').on('keydown', function() {
@@ -66,6 +68,8 @@ $(document).on('ready', function escuchar(){
 	$('#desconectar').on('click', function(){
 		ws.emit('desconectar', nick);
 		$('#nick').val('');
+		$("#nick").prop('disabled',false);
+		$("#enviarNick").prop('disabled',false);
 		//$('#')		
 	});
 
