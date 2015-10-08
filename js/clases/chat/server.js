@@ -1,3 +1,4 @@
+	console.log('Servidor escuchando en 8000');
 var io = require('socket.io').listen(8000),
 	nicks = [];
 
@@ -5,6 +6,7 @@ io.sockets.on('connection', function escucharCliente(user){
 
 	io.emit('emitirNicks', nicks);
 	user.on('mensajeUser', function emit(data){
+		console.log(data.mensaje);
 		io.sockets.emit('mensajeServer',{mensaje:data.mensaje, nick:data.de});
 		io.sockets.emit('borrarEscribiendo');
 	});

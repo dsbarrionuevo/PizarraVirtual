@@ -19,16 +19,15 @@ $(document).on('ready', function escuchar(){
 			{
 				enviarMensaje();
 				evt.preventDefault();
+				evt.which = null;
 			}
 		});
 	});
 
-	function enviarMensaje()
-	{
+	function enviarMensaje() {
 		ws.emit('mensajeUser',{mensaje:$('#mensaje').val(), de:nick});
 		$('#mensaje').val('');
 		$('#escribiendo').val('');
-
 	}
 
 	ws.on('emitirNicks', function imprimir(nicks){
