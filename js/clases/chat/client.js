@@ -1,13 +1,15 @@
 var ws = io.connect('http://localhost:8000'),
 lastPress = null,
 nick = '';
+var i = 0;
 
 $(document).on('ready', function escuchar(){
 
 
 	ws.on('mensajeServer', function recibir(datosServer){
 		$('#conversacion').append($(' <p>').text(datosServer.nick +": " +datosServer.mensaje));
-		$('#conversacion').animate({scrollTop: $('#conversacion').height()}, 800);
+		$('#conversacion').animate({scrollTop: $('#conversacion').height() + i}, 400);
+		i = i+20;
 	});
 
 
