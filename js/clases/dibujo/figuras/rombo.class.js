@@ -4,6 +4,7 @@ function Rombo(x, y, ancho, alto, estilo) {
     this.dibujar = function (contexto) {
         this.__proto__.dibujar(contexto);
         this.estilo.preparar(contexto);
+        contexto.beginPath();
         rombo(contexto, this.x, this.y, this.ancho, this.alto);
         this.estilo.terminar(contexto);
     };

@@ -9,6 +9,7 @@ function RectanguloRedondeado(x, y, alto, ancho, radio, estilo) {
     this.dibujar = function (contexto) {
         this.__proto__.dibujar(contexto);
         this.estilo.preparar(contexto);
+        contexto.beginPath();
         rectanguloRedondeado(contexto, this.x, this.y, this.ancho, this.alto, this.radio);
         this.estilo.terminar(contexto);
     };

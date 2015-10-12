@@ -5,6 +5,7 @@ function Rectangulo(x, y, ancho, alto, estilo) {
         //llamo al metodo del padre, si bien forma no posee este metodo, pero llama al metodo de visualizable
         this.__proto__.dibujar(contexto);
         this.estilo.preparar(contexto);
+        contexto.beginPath();
         contexto.rect(this.x, this.y, this.ancho, this.alto);
         this.estilo.terminar(contexto);
     };
