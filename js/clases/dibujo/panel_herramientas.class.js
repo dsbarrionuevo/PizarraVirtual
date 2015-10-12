@@ -14,5 +14,6 @@ function PanelHerramientas(papel) {
     //set por defecto de herramientas
     this.herramientas.push(new HerramientaSeleccion(this.papel));
     this.herramientas.push(new HerramientaMover(this.papel));
+    this.herramientas.push(new HerramientaRellenar(this.papel));
     this.herramientaActual = this.herramientas[0];
 }
