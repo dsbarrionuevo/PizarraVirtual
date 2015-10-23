@@ -2,14 +2,18 @@ var papel;
 window.addEventListener("load", function () {
     papel = new Papel(document.querySelector("canvas"));
 
-    var c1 = new RectanguloRedondeado(0, 0, 100,100,30, new Estilo(function (contexto) {
+    var c1 = new RectanguloRedondeado(100, 100, 500,500,30, new Estilo(function (contexto) {
         contexto.save();
         contexto.fillStyle = "#f00";
+    }));
+    var c2 = new Circulo(200,200,50, new Estilo(function (contexto) {
+        contexto.save();
+        contexto.fillStyle = "#fff";
     }));
 //    papel.agregarObjeto(r1);
 //    papel.agregarObjeto(r2);
     papel.agregarObjeto(c1);
-//    papel.agregarObjeto(c2);
+    papel.agregarObjeto(c2);
     papel.dibujar();
     
     console.log(c1.intersecta(0,50));
