@@ -10,10 +10,16 @@ window.addEventListener("load", function () {
         contexto.save();
         contexto.fillStyle = "#fff";
     }));
+    var c3 = new Rectangulo(0,0,500,500, new Estilo(function (contexto) {
+        contexto.save();
+        contexto.fillStyle = "#f0f";
+    }));
+    
 //    papel.agregarObjeto(r1);
 //    papel.agregarObjeto(r2);
     papel.agregarObjeto(c1);
     papel.agregarObjeto(c2);
+    papel.agregarObjeto(c3);
     papel.dibujar();
     
     console.log(c1.intersecta(0,50));
