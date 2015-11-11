@@ -8,8 +8,8 @@ Flecha.prototype = new Forma;
  * @param {type} estilo
  * @returns {Flecha}
  */
-function Flecha(xi, yi, xf, yf, largoPunta, estilo) {
-    Forma.call(this, xi, yi, xi + xf, yi + yf, estilo);
+function Flecha(x, y, xf, yf, largoPunta, estilo) {
+    Forma.call(this, x, y, x + xf, y + yf, estilo);
     this.xf = xf;
     this.yf = yf;
     this.anchoLinea;
