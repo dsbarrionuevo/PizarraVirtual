@@ -5,7 +5,13 @@ function TrianguloRectangulo(x, y, ancho, alto, estilo) {
         this.__proto__.dibujar(contexto);
         this.estilo.preparar(contexto);
         contexto.beginPath();
-        trianguloRectangulo(contexto, this.x, this.y, this.ancho, this.alto);
+        //Obtengo los puntos de inicio del rectangulo
+        var xIni = this.x - ancho;
+        var yIni = this.y - alto;
+        var anchoT = this.ancho*2;
+        var altoT = this.alto*2;
+        
+        trianguloRectangulo(contexto, xIni, yIni, anchoT, altoT);
         this.estilo.terminar(contexto);
     };
 
@@ -23,24 +29,30 @@ function TrianguloRectangulo(x, y, ancho, alto, estilo) {
     this.intersecta = function(x,y){
         this.__proto__.intersecta(x,y);
         
-        var x1 = this.x;
-        var y1 = this.y + this.alto;
-        var x2 = this.x+this.ancho;
-        var y2 = this.y + this.alto;
+        //Obtengo los puntos de inicio del rectangulo
+        var xIni = this.x - ancho;
+        var yIni = this.y - alto;
+        var anchoT = this.ancho*2;
+        var altoT = this.alto*2;
+        
+        var x1 = xIni;
+        var y1 = yIni + altoT;
+        var x2 = xIni+anchoT;
+        var y2 = yIni + altoT;
         
         var d1 = (y2-y1)*x + (x1-x2)*y + (x2*y1-y2*x1);
-        console.log(d1);
-        x1 = this.x;
-        y1 = this.y;
-        x2 = this.x;
-        y2 = this.y+this.alto;
+ 
+        x1 = xIni;
+        y1 = yIni;
+        x2 = xIni;
+        y2 = yIni+altoT;
         
         var d2 = (y2-y1)*x + (x1-x2)*y + (x2*y1-y2*x1);
-        console.log(d2);
-        x2 = this.x + this.ancho;
+      
+        x2 = xIni + anchoT;
         
         var d3 = (y2-y1)*x + (x1-x2)*y + (x2*y1-y2*x1);
-        console.log(d3);
+        
         return (d1>=0 && d2>=0 && d3<=0);
     };
 }

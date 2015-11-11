@@ -10,7 +10,13 @@ function RectanguloRedondeado(x, y, alto, ancho, radio, estilo) {
         this.__proto__.dibujar(contexto);
         this.estilo.preparar(contexto);
         contexto.beginPath();
-        rectanguloRedondeado(contexto, this.x, this.y, this.ancho, this.alto, this.radio);
+        //Obtengo los puntos de inicio del rectangulo
+        var xIni = this.x - ancho;
+        var yIni = this.y - alto;
+        var anchoT= this.ancho*2;
+        var altoT= this.alto*2;
+        //Lo dibujo
+        rectanguloRedondeado(contexto, xIni, yIni, anchoT, altoT, this.radio);
         this.estilo.terminar(contexto);
     };
 
@@ -29,14 +35,21 @@ function RectanguloRedondeado(x, y, alto, ancho, radio, estilo) {
     this.intersecta = function (x, y) {
         this.__proto__.intersecta(x, y);
         
-        if ((x > (this.x + this.radio) && x < (this.x + this.ancho - this.radio)) && (y > this.y && y < this.y + this.alto)) {
+        //Obtengo los puntos de inicio del rectangulo
+        var xIni = this.x - ancho;
+        var yIni = this.y - alto;
+        var anchoT= this.ancho*2;
+        var altoT= this.alto*2;
+        
+        if ((x > (xIni + this.radio) && x < (xIni + anchoT - this.radio)) && 
+                (y > yIni && y < yIni + altoT)) {
             return true;
         }
-        if ((x >= this.x  && x <= (this.x + this.ancho)) && (y >= (this.y + this.radio) 
-                && y <= (this.y + this.alto - this.radio))) {
+        if ((x >= xIni  && x <= (xIni + anchoT)) && (y >= (yIni + this.radio) 
+                && y <= (yIni + altoT - this.radio))) {
             return true;
         }
-        if(intersectaCircunferencias(x,y,this.x,this.y,this.ancho,this.alto,this.radio)){
+        if(intersectaCircunferencias(x,y,xIni,yIni,anchoT,altoT,this.radio)){
             return true;
         }
         return false;

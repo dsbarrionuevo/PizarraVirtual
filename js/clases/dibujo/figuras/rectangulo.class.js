@@ -6,12 +6,23 @@ function Rectangulo(x, y, ancho, alto, estilo) {
         this.__proto__.dibujar(contexto);
         this.estilo.preparar(contexto);
         contexto.beginPath();
-        contexto.rect(this.x, this.y, this.ancho, this.alto);
+        //Obtengo los puntos de inicio del rectangulo
+        var xIni = this.x - ancho;
+        var yIni = this.y - alto;
+        var anchoT= this.ancho*2;
+        var altoT= this.alto*2;
+        //Lo diibujo
+        contexto.rect(xIni, yIni, anchoT, altoT);
         this.estilo.terminar(contexto);
     };
     this.intersecta = function (x, y) {
+        var xIni = this.x - ancho;
+        var yIni = this.y - alto;
+        var anchoT= this.ancho*2;
+        var altoT= this.alto*2;
+        
         this.__proto__.intersecta(x, y);
-        return ((x > this.x && x < this.x + this.ancho) && (y > this.y && y < this.y + this.alto));
+        return ((x > xIni && x < xIni + anchoT) && (y > yIni && y < yIni + altoT));
     };
     this.mover = function (x, y) {
         this.__proto__.mover(x, y);

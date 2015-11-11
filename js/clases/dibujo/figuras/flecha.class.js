@@ -12,6 +12,7 @@ function Flecha(xi, yi, xf, yf, largoPunta, estilo) {
     Forma.call(this, xi, yi, xi + xf, yi + yf, estilo);
     this.xf = xf;
     this.yf = yf;
+    this.anchoLinea;
     this.largoPunta = largoPunta;
     if (this.largoPunta === undefined) {
         //valor por defecto,
@@ -21,10 +22,15 @@ function Flecha(xi, yi, xf, yf, largoPunta, estilo) {
     this.dibujar = function (contexto) {
         this.__proto__.dibujar(contexto);
         this.estilo.preparar(contexto);
+        anchoLinea = contexto.lineWidth;
         contexto.beginPath();
-        contexto.moveTo(this.x, this.y);
+        //Obtengo los puntos de inicio del rectangulo
+        var xIni = this.x - this.xf;
+        var yIni = this.y - this.yf;
+        
+        contexto.moveTo(xIni, yIni);
         contexto.lineTo(this.xf, this.yf);
-        var angulo = Math.atan2(this.yf - this.y, this.xf - this.x);
+        var angulo = Math.atan2(this.yf - yIni, this.xf - xIni);
         angulo = angulo * 180 / Math.PI;//en grados
         var punto1 = {
             x: (Math.cos((angulo - 135) * Math.PI / 180) * this.largoPunta),
@@ -40,6 +46,37 @@ function Flecha(xi, yi, xf, yf, largoPunta, estilo) {
         contexto.lineTo(this.xf, this.yf);
         contexto.stroke();
         this.estilo.terminar(contexto);
+    };
+    
+    this.intersecta = function (x,y){
+        this.__proto__.intersecta(x,y);
+        
+        //Obtengo los puntos de inicio del rectangulo
+        var xIni = this.x - this.xf;
+        var yIni = this.y - this.yf;
+        
+        var mitadLinea = this.anchoLinea/2;
+        
+        var x1 = xIni;
+        var y1 = yIni - mitadLinea;
+        var x2 = this.xf;
+        var y2 = this.yf - mitadLinea;
+        
+        var d1 = (y2-y1)*x + (x1-x2)*y + (x2*y1-y2*x1);
+        
+        x1 = xIni;
+        y1 = yIni + mitadLinea;
+        x2 = this.xf ;
+        y2 = this.yf + mitadLinea;
+        
+        var d2 = (y2-y1)*x + (x1-x2)*y + (x2*y1-y2*x1);
+        
+        if(x>=xIni && x<=this.xf && y>=yIni && y<=this.xf){
+            return ((d1<=0) && (d2>=0));
+        }
+        else{
+            return false;
+        }
     };
     
     this.mover = function (x, y) {

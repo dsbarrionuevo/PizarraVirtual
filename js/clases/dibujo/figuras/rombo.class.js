@@ -5,7 +5,13 @@ function Rombo(x, y, ancho, alto, estilo) {
         this.__proto__.dibujar(contexto);
         this.estilo.preparar(contexto);
         contexto.beginPath();
-        rombo(contexto, this.x, this.y, this.ancho, this.alto);
+        //Obtengo los puntos de inicio del rectangulo
+        var xIni = this.x - ancho;
+        var yIni = this.y - alto;
+        var anchoT= this.ancho*2;
+        var altoT= this.alto*2;
+        
+        rombo(contexto, xIni, yIni, anchoT, altoT);
         this.estilo.terminar(contexto);
     };
 
@@ -21,31 +27,37 @@ function Rombo(x, y, ancho, alto, estilo) {
     this.intersecta = function(x,y){
         this.__proto__.intersecta(x,y);
         
-        var x1 = this.x + (this.ancho/2);
-        var y1 = this.y;
-        var x2 = this.x;
-        var y2 = this.y + (this.alto/2);
+        //Obtengo los puntos de inicio del rectangulo
+        var xIni = this.x - ancho;
+        var yIni = this.y - alto;
+        var anchoT= this.ancho*2;
+        var altoT= this.alto*2;
+        
+        var x1 = xIni + (anchoT/2);
+        var y1 = yIni;
+        var x2 = xIni;
+        var y2 = yIni + (altoT/2);
         
         var d1 = (y2-y1)*x + (x1-x2)*y + (x2*y1-y2*x1);
         
-        x1 = this.x;
-        y1 = this.y + (this.alto/2);
-        x2 = this.x + (this.ancho/2);
-        y2 = this.y+this.alto;
+        x1 = xIni;
+        y1 = yIni + (altoT/2);
+        x2 = xIni + (anchoT/2);
+        y2 = yIni+altoT;
         
         var d2 = (y2-y1)*x + (x1-x2)*y + (x2*y1-y2*x1);
         
-        x1 = this.x + (this.ancho/2);
-        y1 = this.y+this.alto;
-        x2 = this.x + this.ancho;
-        y2 = this.y + (this.alto/2);
+        x1 = xIni + (anchoT/2);
+        y1 = yIni+altoT;
+        x2 = xIni + anchoT;
+        y2 = yIni + (altoT/2);
         
         var d3 = (y2-y1)*x + (x1-x2)*y + (x2*y1-y2*x1);
         
-        x1 = this.x + this.ancho;
-        y1 = this.y + (this.alto/2);
-        x2 = this.x + (this.ancho/2);
-        y2 = this.y;
+        x1 = xIni + anchoT;
+        y1 = yIni + (altoT/2);
+        x2 = xIni + (anchoT/2);
+        y2 = yIni;
         
         var d4 = (y2-y1)*x + (x1-x2)*y + (x2*y1-y2*x1);
         
