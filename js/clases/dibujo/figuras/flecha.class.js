@@ -9,7 +9,7 @@ Flecha.prototype = new Forma;
  * @returns {Flecha}
  */
 function Flecha(x, y, xf, yf, largoPunta, estilo) {
-    Forma.call(this, x, y, x + xf, y + yf, estilo);
+    Forma.call(this, x, y, xf -x,yf-y, estilo);
     this.xf = xf;
     this.yf = yf;
     this.anchoLinea;
@@ -25,8 +25,8 @@ function Flecha(x, y, xf, yf, largoPunta, estilo) {
         anchoLinea = contexto.lineWidth;
         contexto.beginPath();
         //Obtengo los puntos de inicio del rectangulo
-        var xIni = this.x - this.xf;
-        var yIni = this.y - this.yf;
+        var xIni = this.x - (this.xf-this.x);
+        var yIni = this.y - (this.yf-this.y);
         
         contexto.moveTo(xIni, yIni);
         contexto.lineTo(this.xf, this.yf);

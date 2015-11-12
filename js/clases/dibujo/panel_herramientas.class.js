@@ -15,5 +15,13 @@ function PanelHerramientas(papel) {
     this.herramientas.push(new HerramientaSeleccion(this.papel));
     this.herramientas.push(new HerramientaMover(this.papel));
     this.herramientas.push(new HerramientaRellenar(this.papel));
+    this.herramientas.push(new HerramientaRectangulo(this.papel));
+    this.herramientas.push(new HerramientaRombo(this.papel));
+    this.herramientas.push(new HerramientaLinea(this.papel));
+    this.herramientas.push(new HerramientaCirculo(this.papel));
+    this.herramientas.push(new HerramientaFlecha(this.papel));
+    this.herramientas.push(new HerramientaTriangulo(this.papel));
+    this.herramientas.push(new HerramientaTrianguloRectangulo(this.papel));
+    this.herramientas.push(new HerramientaRectanguloRedondeado(this.papel));
     this.herramientaActual = this.herramientas[0];
 }
