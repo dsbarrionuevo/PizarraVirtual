@@ -10,8 +10,8 @@ function Servidor(ip, puerto, socket) {
 
         //registramos eventos a cliente
         
-        cliente.on('ComandoMensajeUsuario', function (data) {
-            new ComandoMensajeUsuario(ComandoMensajeUsuario);
+        cliente.on('ComandoMensajeUsuario', function (datos) {
+            (new ComandoMensajeUsuario(ComandoMensajeUsuario)).ejecutar(datos);
         });
         cliente.on('mensajeUser', function (data) {
             //console.log(data.mensaje);
