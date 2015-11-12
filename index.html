@@ -4,6 +4,7 @@
         <title>Pizarra virtual</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
         <!-- CSS -->
         <link href="css/index.css" type="text/css" rel="stylesheet">
         <!-- JS -->
@@ -23,11 +24,21 @@
         <script src="js/clases/dibujo/herramienta_seleccion.class.js" type="text/javascript"></script>
         <script src="js/clases/dibujo/herramienta_mover.class.js" type="text/javascript"></script>
         <script src="js/clases/dibujo/herramienta_rellenar.class.js" type="text/javascript"></script>
+        <script src="js/clases/dibujo/herramienta_rectangulo.class.js" type="text/javascript"></script>
+        <script src="js/clases/dibujo/herramienta_rombo.class.js" type="text/javascript"></script>
+        <script src="js/clases/dibujo/herramienta_linea.class.js" type="text/javascript"></script> 
+        <script src="js/clases/dibujo/herramienta_circulo.class.js" type="text/javascript"></script>   
+        <script src="js/clases/dibujo/herramienta_flecha.class.js" type="text/javascript"></script>   
+        <script src="js/clases/dibujo/herramienta_triangulo.class.js" type="text/javascript"></script>
+        <script src="js/clases/dibujo/herramienta_triangulo_rectangulo.class.js" type="text/javascript"></script>
+        <script src="js/clases/dibujo/herramienta_rectangulo_redondeado.class.js" type="text/javascript"></script>  
         <script src="js/clases/dibujo/panel_herramientas.class.js" type="text/javascript"></script>
         <script src="js/clases/dibujo/capa.class.js" type="text/javascript"></script>
         <script src="js/clases/dibujo/papel.class.js" type="text/javascript"></script>
         <script src="js/index.js" type="text/javascript"></script>
+        <script src="js/maquetacion.js" type="text/javascript"></script>
         <script src="js/panel_herramientas.js" type="text/javascript"></script>
+        <script src="js/panel_chat.js" type="text/javascript"></script>
     </head>
     <body>
         <div id="panelCanvas">
@@ -105,17 +116,20 @@
             </canvas>
             <div id="panelChat">
                 <div id="titularChat">
-                    <button>Conectados</button>
+                    <button id="btnChatMostrarConectados">Mostrar conectados</button>
                     <div class="clearer"></div>
                 </div>
                 <div id="conversacion">
                     <div id="listaConectados">
                         <ul>
                             <li>
-                                <span class="estado estadoConectado"></span>Nose
+                                <div class="estado estadoConectado"></div>Conectado 1
                             </li>
                             <li>
-                                <span class="estado estadoDesconectado"></span>Nose
+                                <div class="estado estadoConectado"></div>Conectado 2
+                            </li>
+                            <li>
+                                <div class="estado estadoDesconectado"></div>Desconectado 1
                             </li>
                         </ul>
                     </div>
