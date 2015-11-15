@@ -6,21 +6,24 @@
         $("#btnChatMostrarConectados").click(function () {
             var $this = $(this);
             if ($this.data("accion") === "mostrar") {
-                $("#listaConectados").css("right", "0px");
-                $this.text("Ocultar conectados");
-                $this.data("accion", "ocultar");
+                mostrarOcultarListaConectados(true);
             } else {
-                $("#listaConectados").css("right", "-110%");
-                $this.text("Mostrar conectados");
-                $this.data("accion", "mostrar");
+                mostrarOcultarListaConectados(false);
             }
+        });
+        $("#enviarMensaje textarea").focus(function () {
+            mostrarOcultarListaConectados(false);
         });
 
         //chat
+        //abro el socket
         socket = io.connect('http://localhost');
+        //lista de eventos que escucho
+        //creo mi usuario
         socket.on("nuevoUsuario", function (nuevoUsuario) {
             usuario = new Usuario(nuevoUsuario.id, nuevoUsuario.nombre);
         });
+        //actualizo mi lista de usuarios conectados (solo mantengo en el html, no js)
         socket.on("listaUsuarios", function (usuarios) {
             $("#listaConectados ul").empty();
             for (var i = 0; i < usuarios.length; i++) {
@@ -28,6 +31,7 @@
                 $("#listaConectados ul").append("<li data-id=" + usuarios[i].id + "><div class='estado " + claseEstado + "'></div>" + usuarios[i].nombre + "</li>");//es seguro poner el id aqui?
             }
         });
+        //escribo el mensaje que otro usuario envio
         socket.on("mensajeNuevo", function (datos) {
             agregarNuevoMensaje(datos.remitente.nombre, datos.mensaje, false);
         });
@@ -37,10 +41,10 @@
                 remitente: usuario,
                 mensaje: $("#enviarMensaje textarea").val().trim()
             };
+            //envio mensaje al servidor
             socket.emit("mensajeNuevo", datos, function () {
                 agregarNuevoMensaje(usuario.nombre, datos.mensaje, true);
                 $("#enviarMensaje textarea").val("");
-                console.log("Recibido con exito por el servidor");
             });
         });
 
@@ -52,7 +56,18 @@
                 claseEnviado = "mensajeEnviado";
             }
             $("#chat").append("<li class='mensaje " + claseEnviado + "'><strong>" + nombreUsuarioRemitente + "</strong><br/>" + mensaje + "</li>");
+        }
 
+        function mostrarOcultarListaConectados(mostrar) {
+            if (mostrar === true) {
+                $("#listaConectados").css("right", "0px");
+                $("#btnChatMostrarConectados").text("Ocultar conectados");
+                $("#btnChatMostrarConectados").data("accion", "ocultar");
+            } else {
+                $("#listaConectados").css("right", "-110%");
+                $("#btnChatMostrarConectados").text("Mostrar conectados");
+                $("#btnChatMostrarConectados").data("accion", "mostrar");
+            }
         }
     });
 

@@ -8,29 +8,42 @@ app.get('/', function (req, res) {
     res.sendFile(__dirname + '/index.html');
 });
 
-var clientes = [];
+var usuarios = [];
+var cantidadUsuarios = 0;
 socketServidor.on('connect', function (socketCliente) {
     //socketCliente.on() //escucha eventos del cliente
     //socketCliente.emit() //el servidor le envia a ese cliente
     //socketServidor.emit(); para todos los clientes
     //socketCliente.broadcast.emit() //envia a todos los clientes menos al este cliente
-    var nuevoUsuario = new Usuario(socketCliente.id, "Usuario" + clientes.length);
-    clientes.push(nuevoUsuario);
+    var nuevoUsuario = new Usuario(socketCliente.id, "Usuario" + cantidadUsuarios);
+    cantidadUsuarios++;
+    usuarios.push(nuevoUsuario);
     //envio datos de usuario al recien conectado
     socketCliente.emit("nuevoUsuario", nuevoUsuario);
     //envio lista de los nombres de usuarios a todos los conectados
-    socketServidor.emit("listaUsuarios", clientes);
+    socketServidor.emit("listaUsuarios", usuarios);
     socketCliente.on("mensajeNuevo", function (datos, handshake) {
-        //quien envio el mensaje?
+        //el servidor envia a todos los usuarios, menos al que lo envio
+        //este ultimo va a escribir el mensaje en el chat cuando el handshake
+        //es decir cuando reciba el ACK dle servidor
         socketCliente.broadcast.emit("mensajeNuevo", datos);
-        handshake();
+        handshake();//envio ACK al que envio el mensaje
+    });
+    socketCliente.on('disconnect', function () {
+        for (var i = 0; i < usuarios.length; i++) {
+            if (usuarios[i].id === socketCliente.id) {
+                usuarios.splice(i, 1);
+                break;
+            }
+        }
+        socketServidor.emit("listaUsuarios", usuarios);
     });
 });
 
 function buscarCliente(id) {
-    for (var i = 0; i < clientes.length; i++) {
-        if (clientes[i].id === id) {
-            return clientes[i];
+    for (var i = 0; i < usuarios.length; i++) {
+        if (usuarios[i].id === id) {
+            return usuarios[i];
         }
     }
 }
