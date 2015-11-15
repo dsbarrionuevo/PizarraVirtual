@@ -39,8 +39,16 @@
         <script src="js/maquetacion.js" type="text/javascript"></script>
         <script src="js/panel_herramientas.js" type="text/javascript"></script>
         <script src="js/panel_chat.js" type="text/javascript"></script>
+        <script src="js/lib/socket.io.js"></script>
     </head>
     <body>
+<!--        <div id="modalNombreUsuario">
+            <form>
+                <label>Ingrese su nombre</label>
+                <input type="text" name="txtNombreUsuario"/>
+                <button>Ingresar</button>
+            </form>
+        </div>-->
         <div id="panelCanvas">
             <div id="panelHerramientas">
                 <ul>
@@ -70,13 +78,13 @@
                         </button>
                     </li>
                     <li>
-                        <button id="btnHerramientaRectangulo" title="Rectangulo">
-                            <span><img src="css/iconos/rectangulo.png"/></span>
+                        <button id="btnHerramientaLinea" title="Linea">
+                            <span><img src="css/iconos/linea.png"/></span>
                         </button>
                     </li>
                     <li>
-                        <button id="btnHerramientaRombo" title="Rombo">
-                            <span><img src="css/iconos/rombo.png"/></span>
+                        <button id="btnHerramientaFlecha" title="Flecha">
+                            <span><img src="css/iconos/flecha.png"/></span>
                         </button>
                     </li>
                     <li>
@@ -85,13 +93,8 @@
                         </button>
                     </li>
                     <li>
-                        <button id="btnHerramientaLinea" title="Linea">
-                            <span><img src="css/iconos/linea.png"/></span>
-                        </button>
-                    </li>
-                    <li>
-                        <button id="btnHerramientaFlecha" title="Flecha">
-                            <span><img src="css/iconos/flecha.png"/></span>
+                        <button id="btnHerramientaRectangulo" title="Rectangulo">
+                            <span><img src="css/iconos/rectangulo.png"/></span>
                         </button>
                     </li>
                     <li>
@@ -109,6 +112,11 @@
                             <span><img src="css/iconos/triangulo_rectangulo.png"/></span>
                         </button>
                     </li>
+                    <li>
+                        <button id="btnHerramientaRombo" title="Rombo">
+                            <span><img src="css/iconos/rombo.png"/></span>
+                        </button>
+                    </li>
                 </ul>
             </div>
             <canvas width="800" height="600">
@@ -122,32 +130,14 @@
                 <div id="conversacion">
                     <div id="listaConectados">
                         <ul>
-                            <li>
-                                <div class="estado estadoConectado"></div>Conectado 1
-                            </li>
-                            <li>
-                                <div class="estado estadoConectado"></div>Conectado 2
-                            </li>
-                            <li>
-                                <div class="estado estadoDesconectado"></div>Desconectado 1
-                            </li>
                         </ul>
                     </div>
                     <ul id="chat">
-                        <li class="mensaje mensajeEnviado">
-                            Hola!
-                        </li>
-                        <li class="mensaje mensajeEnviado">
-                            Hola!
-                        </li>
-                        <li class="mensaje mensajeRecibido">
-                            Hola!
-                        </li>
                     </ul>
                 </div>
                 <div id="enviarMensaje">
-                    <textarea placeholder="Ecribir mensaje..." rows="5"></textarea>
-                    <button id="btnEnviarMensaje">E</button>
+                    <textarea placeholder="Ecribir mensaje..." rows="4"></textarea>
+                    <button id="btnEnviarMensaje">Enviar mensaje</button>
                 </div>
             </div>
         </div>

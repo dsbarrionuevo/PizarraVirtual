@@ -1,0 +1,30 @@
+{
+  "name": "pizarra_virtual",
+  "version": "1.0.0",
+  "description": "programa destinado a facilitar dar clases a distancia",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dsbarrionuevo/PizarraVirtual.git"
+  },
+  "keywords": [
+    "Pizarra",
+    "Blackboard",
+    "E-learning",
+    "WebSocket",
+    "Sockets"
+  ],
+  "author": "LabSis UTN-FRC",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dsbarrionuevo/PizarraVirtual/issues"
+  },
+  "homepage": "https://github.com/dsbarrionuevo/PizarraVirtual#readme",
+  "dependencies": {
+    "express": "^4.13.3",
+    "socket.io": "^1.3.7"
+  }
+}
