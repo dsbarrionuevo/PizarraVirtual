@@ -71,9 +71,28 @@
                 $("#btnChatMostrarConectados").data("accion", "mostrar");
             }
         }
+
+        var e = new Escucha();
+        papel.agregarListener(e);
+
+        socket.on('objetoAgregadox', function (objeto) {
+            papel.eliminarListener(e);
+            papel.agregarObjeto(objeto);
+            console.log("Así llegó: ", objeto);
+            //papel.dibujar();
+        });
+
     });
 
     //clases
+    Escucha.prototype = new ListenerPapel;
+    function Escucha() {
+        this.objetoAgregado = function (objeto, ordenCapa) {
+            console.log("Así se fue: ", objeto);
+            socket.emit("objetoAgregado", objeto);
+        };
+    }
+
     function Usuario(id, nombre) {
         this.id = id;
         this.nombre = nombre;

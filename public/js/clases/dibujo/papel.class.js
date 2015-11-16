@@ -5,6 +5,7 @@ function Papel(canvas) {
     this.ordenCapaActual;
     this.capas = [];
     this.panel = new PanelHerramientas(this);
+    this.listeners = [];//ListenerPapel
     this.agregarCapa = function () {
         //el orden de la capa esta definico por el length del array de capas
         var capa = new Capa(this.capas.length);
@@ -20,14 +21,15 @@ function Papel(canvas) {
         }
     };
     this.agregarObjeto = function (objeto, ordenCapa) {
-        if (ordenCapa >= 0 && ordenCapa <= this.capas.length - 1) {
-            this.capas[ordenCapa].agregarObjeto(objeto);
+        if (ordenCapa === undefined) {
+            ordenCapa = this.ordenCapaActual;
         }
-    };
-    this.agregarObjeto = function (objeto) {
-        var ordenCapa = this.ordenCapaActual;
         if (ordenCapa >= 0 && ordenCapa <= this.capas.length - 1) {
             this.capas[ordenCapa].agregarObjeto(objeto);
+            //aviso a los escuchas
+            for (var i = 0; i < this.listeners.length; i++) {
+                this.listeners[i].objetoAgregado(objeto, ordenCapa);
+            }
         }
     };
     this.obtenerObjetosEnPunto = function (x, y) {
@@ -41,6 +43,18 @@ function Papel(canvas) {
     };
     this.cambiarHerramienta = function (nombreHerramienta) {
         instancia.panel.cambiarHerramienta(nombreHerramienta);
+    };
+    this.agregarListener = function (listener) {
+        listener.id = this.listeners.length;//un poco trucho hacerlo asi
+        this.listeners.push(listener);
+    };
+    this.eliminarListener = function (listener) {
+        for (var i = 0; i < this.listeners.length; i++) {
+            if (this.listeners[i].equals(listener)) {
+                this.listeners.splice(i, 1);
+                break;
+            }
+        }
     };
     //eventos en canvas
     this.canvas.addEventListener("click", function (evt) {
@@ -56,14 +70,13 @@ function Papel(canvas) {
     this.canvas.addEventListener("mouseup", function (evt) {
         instancia.panel.herramientaActual.onmouseup(evt);
     });
-    
     // Este evento permite detectar el click derecho del mouse.
     // preventDefault() evita que se despliegue un menu contextual
-    this.canvas.addEventListener("contextmenu", function (evt){
+    this.canvas.addEventListener("contextmenu", function (evt) {
         evt.preventDefault();
         instancia.panel.herramientaActual.onclick(evt);
     });
-    
+
     //por defecto creo una capa vacia, con orden 0, es decir el fondo del papel
     this.agregarCapa();
     //seteo como capa actual a la de fondo, recien insertada

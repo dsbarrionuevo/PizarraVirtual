@@ -25,9 +25,12 @@ socketServidor.on('connect', function (socketCliente) {
     socketCliente.on("mensajeNuevo", function (datos, handshake) {
         //el servidor envia a todos los usuarios, menos al que lo envio
         //este ultimo va a escribir el mensaje en el chat cuando el handshake
-        //es decir cuando reciba el ACK dle servidor
+        //es decir cuando reciba el ACK del servidor
         socketCliente.broadcast.emit("mensajeNuevo", datos);
         handshake();//envio ACK al que envio el mensaje
+    });
+    socketCliente.on('objetoAgregado', function (objeto) {
+        socketCliente.broadcast.emit('objetoAgregadox', objeto);
     });
     socketCliente.on('disconnect', function () {
         for (var i = 0; i < usuarios.length; i++) {

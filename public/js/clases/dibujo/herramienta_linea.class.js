@@ -18,11 +18,7 @@ function HerramientaLinea(papel) {
         } else {
             var xc = this.x + ((evento.offsetX - this.x) / 2);
             var yc = this.y + ((evento.offsetY - this.y) / 2);
-            var f = new Linea(xc, yc, evento.offsetX, evento.offsetY, new Estilo(function (contexto) {
-                contexto.save();
-                contexto.lineWidth = 1;
-                contexto.fillStyle = "#fff";
-            }));
+            var f = new Linea(xc, yc, evento.offsetX, evento.offsetY);
             papel.agregarObjeto(f);
             papel.dibujar();
             bandera = true;
