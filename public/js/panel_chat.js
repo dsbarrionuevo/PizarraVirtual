@@ -37,15 +37,17 @@
         });
 
         $("#btnEnviarMensaje").click(function () {
-            var datos = {
-                remitente: usuario,
-                mensaje: $("#enviarMensaje textarea").val().trim()
-            };
-            //envio mensaje al servidor
-            socket.emit("mensajeNuevo", datos, function () {
-                agregarNuevoMensaje(usuario.nombre, datos.mensaje, true);
-                $("#enviarMensaje textarea").val("");
-            });
+            if ($("#enviarMensaje textarea").val().trim().length > 0) {
+                var datos = {
+                    remitente: usuario,
+                    mensaje: $("#enviarMensaje textarea").val().trim()
+                };
+                //envio mensaje al servidor
+                socket.emit("mensajeNuevo", datos, function () {
+                    agregarNuevoMensaje(usuario.nombre, datos.mensaje, true);
+                    $("#enviarMensaje textarea").val("");
+                });
+            }
         });
 
         //funciones

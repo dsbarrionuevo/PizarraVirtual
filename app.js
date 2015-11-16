@@ -14,7 +14,7 @@ socketServidor.on('connect', function (socketCliente) {
     //socketCliente.on() //escucha eventos del cliente
     //socketCliente.emit() //el servidor le envia a ese cliente
     //socketServidor.emit(); para todos los clientes
-    //socketCliente.broadcast.emit() //envia a todos los clientes menos al este cliente
+    //socketCliente.broadcast.emit() //envia a todos los clientes menos a este cliente
     var nuevoUsuario = new Usuario(socketCliente.id, "Usuario" + cantidadUsuarios);
     cantidadUsuarios++;
     usuarios.push(nuevoUsuario);
@@ -39,14 +39,6 @@ socketServidor.on('connect', function (socketCliente) {
         socketServidor.emit("listaUsuarios", usuarios);
     });
 });
-
-function buscarCliente(id) {
-    for (var i = 0; i < usuarios.length; i++) {
-        if (usuarios[i].id === id) {
-            return usuarios[i];
-        }
-    }
-}
 
 function Usuario(id, nombre) {
     this.id = id;

@@ -1,7 +1,6 @@
 HerramientaRellenar.prototype = new Herramienta;
 /**
  * Permite pintar un area
- * @param {string} nombre Nombre de la herramienta
  * @param {Papel} papel Papel de dibujo
  * @returns {HerramientaRellenar}
  */
@@ -114,7 +113,7 @@ function HerramientaRellenar(papel) {
                         {
                             auxPintar = verificarColor(x, j + 1);
                             if (!auxPintar) {
-                                for (var k = i ; k < x; k++) {   
+                                for (var k = i; k < x; k++) {
                                     bordesSupInf.push({x: k, y: j});
                                 }
                                 j = y;
@@ -131,7 +130,7 @@ function HerramientaRellenar(papel) {
                         {
                             auxPintar = verificarColor(x, j - 1);
                             if (!auxPintar) {
-                                for (var k = i ; k < x; k++) {
+                                for (var k = i; k < x; k++) {
                                     bordesSupInf.push({x: k, y: j});
                                 }
                                 bandera = false;
@@ -167,7 +166,7 @@ function HerramientaRellenar(papel) {
                         i -= 1;
                     }
                     break;
-                }
+            }
 
         }
         for (var i = 0; i < bordesSupInf.length; i++) {

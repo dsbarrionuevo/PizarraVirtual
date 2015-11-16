@@ -1,9 +1,8 @@
 HerramientaMover.prototype = new Herramienta;
 /**
- * Permite seleccionar solo un objeto a la vez
- * @param {string} nombre Nombre de la herramienta
+ * Permite cambiar la posicion de un objeto en el canvas
  * @param {Papel} papel Papal de dibujo
- * @returns {HerramientaSeleccion}
+ * @returns {HerramientaMover}
  */
 function HerramientaMover(papel) {
     Herramienta.call(this, "Mover", papel);

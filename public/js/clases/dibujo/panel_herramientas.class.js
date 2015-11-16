@@ -2,11 +2,24 @@ function PanelHerramientas(papel) {
     this.papel = papel;
     this.herramientas = [];
     this.herramientaActual;
+    this.tiempoUsoHerramientaActual = {
+        inicio: Date.now(),
+        fin: undefined
+    };
     this.cambiarHerramienta = function (nombreHerramienta) {
+        this.tiempoUsoHerramientaActual.fin = Date.now();
         for (var i = 0; i < this.herramientas.length; i++) {
             if (this.herramientas[i].nombre === nombreHerramienta) {
+                //disparo el evento de cambio de herramienta
+                this.herramientaActual.ontoolchanged({
+                    oldTool: this.herramientaActual,
+                    newTool: this.herramientas[i],
+                    useDuration: this.tiempoUsoHerramientaActual.fin - this.tiempoUsoHerramientaActual.inicio
+                });
+                this.tiempoUsoHerramientaActual.inicio = Date.now();
+                this.tiempoUsoHerramientaActual.fin = undefined;
                 this.herramientaActual = this.herramientas[i];
-                return;
+                break;
             }
         }
         //console.log("Herramienta con nombre " + nombreHerramienta + " no encontrada");

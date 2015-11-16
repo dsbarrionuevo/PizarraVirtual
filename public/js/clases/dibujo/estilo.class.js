@@ -14,7 +14,7 @@ function Estilo(preparar, terminar) {
         //funcion preparar por defecto
         this.preparar = function (contexto) {
             contexto.save();
-            contexto.fillStyle = "#aaa";
+            contexto.fillStyle = "#eee";
             contexto.strokeStyle = "#000";
             contexto.lineWidth = 1;
         };

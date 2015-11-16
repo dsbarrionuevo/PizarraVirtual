@@ -13,8 +13,8 @@ function RectanguloRedondeado(x, y, alto, ancho, radio, estilo) {
         //Obtengo los puntos de inicio del rectangulo
         var xIni = this.x - ancho;
         var yIni = this.y - alto;
-        var anchoT= this.ancho*2;
-        var altoT= this.alto*2;
+        var anchoT = this.ancho * 2;
+        var altoT = this.alto * 2;
         //Lo dibujo
         rectanguloRedondeado(contexto, xIni, yIni, anchoT, altoT, this.radio);
         this.estilo.terminar(contexto);
@@ -31,34 +31,35 @@ function RectanguloRedondeado(x, y, alto, ancho, radio, estilo) {
         ctx.quadraticCurveTo(x + width, y, x + width - radius, y);
         ctx.lineTo(x + radius, y);
         ctx.quadraticCurveTo(x, y, x, y + radius);
-    };
+    }
+    ;
     this.intersecta = function (x, y) {
         this.__proto__.intersecta(x, y);
-        
+
         //Obtengo los puntos de inicio del rectangulo
         var xIni = this.x - ancho;
         var yIni = this.y - alto;
-        var anchoT= this.ancho*2;
-        var altoT= this.alto*2;
-        
-        if ((x > (xIni + this.radio) && x < (xIni + anchoT - this.radio)) && 
+        var anchoT = this.ancho * 2;
+        var altoT = this.alto * 2;
+
+        if ((x > (xIni + this.radio) && x < (xIni + anchoT - this.radio)) &&
                 (y > yIni && y < yIni + altoT)) {
             return true;
         }
-        if ((x >= xIni  && x <= (xIni + anchoT)) && (y >= (yIni + this.radio) 
+        if ((x >= xIni && x <= (xIni + anchoT)) && (y >= (yIni + this.radio)
                 && y <= (yIni + altoT - this.radio))) {
             return true;
         }
-        if(intersectaCircunferencias(x,y,xIni,yIni,anchoT,altoT,this.radio)){
+        if (intersectaCircunferencias(x, y, xIni, yIni, anchoT, altoT, this.radio)) {
             return true;
         }
         return false;
     };
-    function intersectaCircunferencias(x,y,px,py,ancho,alto,radio){
+    function intersectaCircunferencias(x, y, px, py, ancho, alto, radio) {
         var bandera = false;
         var rx = px + radio;
         var ry = py + radio;
-  
+
         if ((Math.sqrt(Math.pow((rx - x), 2) + Math.pow((ry - y), 2))) <= radio) {
             bandera = true;
         }
@@ -82,6 +83,7 @@ function RectanguloRedondeado(x, y, alto, ancho, radio, estilo) {
             bandera = true;
         }
         return bandera;
-    };
+    }
+    ;
 }
 

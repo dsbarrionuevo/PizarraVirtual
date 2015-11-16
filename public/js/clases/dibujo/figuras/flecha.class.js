@@ -9,7 +9,7 @@ Flecha.prototype = new Forma;
  * @returns {Flecha}
  */
 function Flecha(x, y, xf, yf, largoPunta, estilo) {
-    Forma.call(this, x, y, xf -x,yf-y, estilo);
+    Forma.call(this, x, y, xf - x, yf - y, estilo);
     this.xf = xf;
     this.yf = yf;
     this.anchoLinea;
@@ -25,9 +25,9 @@ function Flecha(x, y, xf, yf, largoPunta, estilo) {
         anchoLinea = contexto.lineWidth;
         contexto.beginPath();
         //Obtengo los puntos de inicio del rectangulo
-        var xIni = this.x - (this.xf-this.x);
-        var yIni = this.y - (this.yf-this.y);
-        
+        var xIni = this.x - (this.xf - this.x);
+        var yIni = this.y - (this.yf - this.y);
+
         contexto.moveTo(xIni, yIni);
         contexto.lineTo(this.xf, this.yf);
         var angulo = Math.atan2(this.yf - yIni, this.xf - xIni);
@@ -47,41 +47,41 @@ function Flecha(x, y, xf, yf, largoPunta, estilo) {
         contexto.stroke();
         this.estilo.terminar(contexto);
     };
-    
-    this.intersecta = function (x,y){
-        this.__proto__.intersecta(x,y);
-        
+
+    this.intersecta = function (x, y) {
+        this.__proto__.intersecta(x, y);
+
         //Obtengo los puntos de inicio del rectangulo
         var xIni = this.x - this.xf;
         var yIni = this.y - this.yf;
-        
-        var mitadLinea = this.anchoLinea/2;
-        
+
+        var mitadLinea = this.anchoLinea / 2;
+
         var x1 = xIni;
         var y1 = yIni - mitadLinea;
         var x2 = this.xf;
         var y2 = this.yf - mitadLinea;
-        
-        var d1 = (y2-y1)*x + (x1-x2)*y + (x2*y1-y2*x1);
-        
+
+        var d1 = (y2 - y1) * x + (x1 - x2) * y + (x2 * y1 - y2 * x1);
+
         x1 = xIni;
         y1 = yIni + mitadLinea;
-        x2 = this.xf ;
+        x2 = this.xf;
         y2 = this.yf + mitadLinea;
-        
-        var d2 = (y2-y1)*x + (x1-x2)*y + (x2*y1-y2*x1);
-        
-        if(x>=xIni && x<=this.xf && y>=yIni && y<=this.xf){
-            return ((d1<=0) && (d2>=0));
+
+        var d2 = (y2 - y1) * x + (x1 - x2) * y + (x2 * y1 - y2 * x1);
+
+        if (x >= xIni && x <= this.xf && y >= yIni && y <= this.xf) {
+            return ((d1 <= 0) && (d2 >= 0));
         }
-        else{
+        else {
             return false;
         }
     };
-    
+
     this.mover = function (x, y) {
         this.x = this.x + x;
         this.y = this.y + y;
     };
-    
+
 }
