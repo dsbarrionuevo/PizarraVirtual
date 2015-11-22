@@ -9,19 +9,36 @@ app.get('/', function (req, res) {
 });
 
 var usuarios = [];
-var cantidadUsuarios = 0;
 socketServidor.on('connect', function (socketCliente) {
     //socketCliente.on() //escucha eventos del cliente
     //socketCliente.emit() //el servidor le envia a ese cliente
     //socketServidor.emit(); para todos los clientes
     //socketCliente.broadcast.emit() //envia a todos los clientes menos a este cliente
-    var nuevoUsuario = new Usuario(socketCliente.id, "Usuario" + cantidadUsuarios);
-    cantidadUsuarios++;
-    usuarios.push(nuevoUsuario);
-    //envio datos de usuario al recien conectado
-    socketCliente.emit("nuevoUsuario", nuevoUsuario);
-    //envio lista de los nombres de usuarios a todos los conectados
-    socketServidor.emit("listaUsuarios", usuarios);
+    //...
+    
+    socketCliente.on("nombreUsuarioNuevo", function (datos, handshake) {
+        //verifico si no existe ya ese nombre de usuario
+        var existeUsuario = false;
+        for (var i = 0; i < usuarios.length; i++) {
+            if (usuarios[i].nombre === datos.nombre) {
+                existeUsuario = true;
+            }
+        }
+        if (existeUsuario) {
+            handshake({
+                exito: false
+            });
+        } else {
+            var nuevoUsuario = new Usuario(socketCliente.id, datos.nombre);
+            usuarios.push(nuevoUsuario);
+            handshake({
+                exito: true,
+                nuevoUsuario: nuevoUsuario
+            });
+            //envio lista de los nombres de usuarios a todos los conectados
+            socketServidor.emit("listaUsuarios", usuarios);
+        }
+    });
     socketCliente.on("mensajeNuevo", function (datos, handshake) {
         //el servidor envia a todos los usuarios, menos al que lo envio
         //este ultimo va a escribir el mensaje en el chat cuando el handshake
@@ -30,7 +47,7 @@ socketServidor.on('connect', function (socketCliente) {
         handshake();//envio ACK al que envio el mensaje
     });
     socketCliente.on('objetoAgregado', function (objeto) {
-        socketCliente.broadcast.emit('objetoAgregadox', objeto);
+        socketCliente.broadcast.emit('objetoAgregado', objeto);
     });
     socketCliente.on('disconnect', function () {
         for (var i = 0; i < usuarios.length; i++) {

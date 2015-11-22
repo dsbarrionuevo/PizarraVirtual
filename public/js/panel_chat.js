@@ -15,14 +15,13 @@
             mostrarOcultarListaConectados(false);
         });
 
+        //primero solicito nombre de usuario
+        $("#blackout").css("display", "block");
+
         //chat
         //abro el socket
         socket = io.connect('http://localhost');
         //lista de eventos que escucho
-        //creo mi usuario
-        socket.on("nuevoUsuario", function (nuevoUsuario) {
-            usuario = new Usuario(nuevoUsuario.id, nuevoUsuario.nombre);
-        });
         //actualizo mi lista de usuarios conectados (solo mantengo en el html, no js)
         socket.on("listaUsuarios", function (usuarios) {
             $("#listaConectados ul").empty();
@@ -34,6 +33,28 @@
         //escribo el mensaje que otro usuario envio
         socket.on("mensajeNuevo", function (datos) {
             agregarNuevoMensaje(datos.remitente.nombre, datos.mensaje, false);
+        });
+
+        //enviar nombre de usuario
+        $("#btnInicioSesion").click(function (evt) {
+            //if (usuario === undefined) {
+            var datos = {
+                nombre: $("#modalInicioSesion input[name='txtNombreUsuario']").val().trim()
+            };
+            //envio nombre al servidor
+            socket.emit("nombreUsuarioNuevo", datos, function (datos) {
+                //verifico si tuvo exito o no el nombre de usuario ingresado
+                if (datos.exito === true) {
+                    //creo mi usuario local
+                    usuario = new Usuario(datos.nuevoUsuario.id, datos.nuevoUsuario.nombre);
+                    $("#blackout").css("display", "none");
+                    $("#modalInicioSesion").css("display", "none");
+                } else {
+                    $("#modalInicioSesion .mensaje").text("Nombre no disponible");
+                }
+            });
+            //}
+            evt.preventDefault();
         });
 
         $("#btnEnviarMensaje").click(function () {
@@ -75,7 +96,7 @@
         var e = new Escucha();
         papel.agregarListener(e);
 
-        socket.on('objetoAgregadox', function (objeto) {
+        socket.on('objetoAgregado', function (objeto) {
             papel.eliminarListener(e);
             papel.agregarObjeto(objeto);
             console.log("Así llegó: ", objeto);
