@@ -33,7 +33,8 @@ socketServidor.on('connect', function (socketCliente) {
             usuarios.push(nuevoUsuario);
             handshake({
                 exito: true,
-                nuevoUsuario: nuevoUsuario
+                nuevoUsuario: nuevoUsuario,
+                emisor: (usuarios.length === 1)//solo el profe puede escribir, que es el primer usuario
             });
             //envio lista de los nombres de usuarios a todos los conectados
             socketServidor.emit("listaUsuarios", usuarios);

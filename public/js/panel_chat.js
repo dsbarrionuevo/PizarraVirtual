@@ -1,6 +1,7 @@
 (function () {
     var socket;
     var usuario;
+    var esEmisor = false;
     $(document).ready(function () {
         $("#btnChatMostrarConectados").data("accion", "mostrar");
         $("#btnChatMostrarConectados").click(function () {
@@ -49,6 +50,12 @@
                     usuario = new Usuario(datos.nuevoUsuario.id, datos.nuevoUsuario.nombre);
                     $("#blackout").css("display", "none");
                     $("#modalInicioSesion").css("display", "none");
+                    esEmisor = datos.emisor;
+                    if (esEmisor) {
+                        iniciarConfiguracionEmisor();
+                    } else {
+                        iniciarConfiguracionEscucha();
+                    }
                 } else {
                     $("#modalInicioSesion .mensaje").text("Nombre no disponible");
                 }
@@ -92,16 +99,19 @@
                 $("#btnChatMostrarConectados").data("accion", "mostrar");
             }
         }
-
-        var e = new Escucha();
-        papel.agregarListener(e);
-
-        socket.on('objetoAgregado', function (objeto) {
-            papel.eliminarListener(e);
-            papel.agregarObjeto(objeto);
-            console.log("Así llegó: ", objeto);
-            //papel.dibujar();
-        });
+        //profesor
+        function iniciarConfiguracionEmisor() {
+            var e = new Escucha();
+            papel.agregarListener(e);
+        }
+        //alumno
+        function iniciarConfiguracionEscucha() {
+            socket.on('objetoAgregado', function (objeto) {
+                papel.agregarObjeto(objeto);
+                console.log("Así llegó: ", objeto);
+                //papel.dibujar();
+            });
+        }
 
     });
 
