@@ -20,6 +20,11 @@
         $("#blackout").css("display", "block");
 
         //chat
+        //
+        //oculto el panel de herramientas por defecto
+        $("#panelHerramientas").css("display", "none");
+        $("#modalInicioSesion input[name='txtNombreUsuario']").focus();
+
         //abro el socket
         socket = io.connect('http://localhost:8080');
         //lista de eventos que escucho
@@ -101,30 +106,34 @@
         }
         //profesor
         function iniciarConfiguracionEmisor() {
+            $("#panelHerramientas").css("display", "block");
             var e = new Escucha();
             papel.agregarListener(e);
         }
         //alumno
         function iniciarConfiguracionEscucha() {
+            $("#panelHerramientas").css("display", "none");
+            //... deseleccione las herramientas del panel
+            $("#panelHerramientas button").removeClass("seleccionada");
             socket.on('objetoAgregado', function (datos) {
-                console.log("Así llegó: ", datos);
+                //console.log("Así llegó: ", datos);
                 var objeto = undefined;
                 if (datos.figura === "Circulo") {
                     objeto = new Circulo(datos.objeto.x + datos.objeto.radio, datos.objeto.y + datos.objeto.radio, datos.objeto.radio);
                 } else if (datos.figura === "Flecha") {
-                    objeto = new Flecha();
+                    objeto = new Flecha(datos.objeto.x, datos.objeto.y, datos.objeto.x + datos.objeto.ancho, datos.objeto.y + datos.objeto.alto, datos.objeto.largoPunta);
                 } else if (datos.figura === "Linea") {
-                    objeto = new Linea();
+                    objeto = new Linea(datos.objeto.x, datos.objeto.y, datos.objeto.x + datos.objeto.ancho, datos.objeto.y + datos.objeto.alto);
                 } else if (datos.figura === "Rectangulo") {
-                    objeto = new Rectangulo();
+                    objeto = new Rectangulo(datos.objeto.x, datos.objeto.y, datos.objeto.ancho, datos.objeto.alto);
                 } else if (datos.figura === "RectanguloRedondeado") {
-                    objeto = new RectanguloRedondeado();
+                    objeto = new RectanguloRedondeado(datos.objeto.x, datos.objeto.y, datos.objeto.ancho, datos.objeto.alto, datos.objeto.radio);
                 } else if (datos.figura === "Rombo") {
-                    objeto = new Rombo();
+                    objeto = new Rombo(datos.objeto.x, datos.objeto.y, datos.objeto.ancho, datos.objeto.alto);
                 } else if (datos.figura === "Triangulo") {
-                    objeto = new Triangulo();
+                    objeto = new Triangulo(datos.objeto.x, datos.objeto.y, datos.objeto.ancho, datos.objeto.alto);
                 } else if (datos.figura === "TrianguloRectangulo") {
-                    objeto = new TrianguloRectangulo();
+                    objeto = new TrianguloRectangulo(datos.objeto.x, datos.objeto.y, datos.objeto.ancho, datos.objeto.alto);
                 }
                 papel.agregarObjeto(objeto);
                 papel.dibujar();
@@ -137,7 +146,7 @@
     Escucha.prototype = new ListenerPapel;
     function Escucha() {
         this.objetoAgregado = function (objeto, ordenCapa) {
-            console.log("Así se fue: ", objeto);
+            //console.log("Así se fue: ", objeto);
             socket.emit("objetoAgregado",
                     {
                         figura: objeto.obtenerNombre(),

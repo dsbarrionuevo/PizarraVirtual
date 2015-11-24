@@ -1,6 +1,6 @@
 RectanguloRedondeado.prototype = new Forma;
 
-function RectanguloRedondeado(x, y, alto, ancho, radio, estilo) {
+function RectanguloRedondeado(x, y, ancho, alto, radio, estilo) {
     Forma.call(this, x, y, ancho, alto, estilo);
     this.radio = radio;
     if (this.radio === undefined) {
