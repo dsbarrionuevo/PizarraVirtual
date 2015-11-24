@@ -18,7 +18,7 @@ function Forma(x, y, ancho, alto, estilo) {
         contexto.beginPath();
         contexto.strokeStyle = "#00f";
         contexto.lineWidth = 1;
-        contexto.rect(this.x, this.y, this.ancho, this.alto);
+        contexto.rect(this.x-this.ancho, this.y-this.alto, this.ancho*2, this.alto*2);
         contexto.stroke();
         contexto.restore();
     };

@@ -35,4 +35,15 @@ function Circulo(x, y, radio, estilo) {
     this.escalar = function (x, y) {
         this.radio = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
     };
+    
+      this.marcar = function (contexto) {
+        this.__proto__.marcar(contexto);
+        contexto.save();
+        contexto.beginPath();
+        contexto.strokeStyle = "#00f";
+        contexto.lineWidth = 1;
+        contexto.rect(this.x, this.y, this.ancho, this.alto);
+        contexto.stroke();
+        contexto.restore();
+    };
 }
