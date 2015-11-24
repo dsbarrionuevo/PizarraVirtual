@@ -21,7 +21,7 @@
 
         //chat
         //abro el socket
-        socket = io.connect('http://localhost');
+        socket = io.connect('http://localhost:8080');
         //lista de eventos que escucho
         //actualizo mi lista de usuarios conectados (solo mantengo en el html, no js)
         socket.on("listaUsuarios", function (usuarios) {
@@ -106,10 +106,28 @@
         }
         //alumno
         function iniciarConfiguracionEscucha() {
-            socket.on('objetoAgregado', function (objeto) {
+            socket.on('objetoAgregado', function (datos) {
+                console.log("Así llegó: ", datos);
+                var objeto = undefined;
+                if (datos.figura === "Circulo") {
+                    objeto = new Circulo(datos.objeto.x + datos.objeto.radio, datos.objeto.y + datos.objeto.radio, datos.objeto.radio);
+                } else if (datos.figura === "Flecha") {
+                    objeto = new Flecha();
+                } else if (datos.figura === "Linea") {
+                    objeto = new Linea();
+                } else if (datos.figura === "Rectangulo") {
+                    objeto = new Rectangulo();
+                } else if (datos.figura === "RectanguloRedondeado") {
+                    objeto = new RectanguloRedondeado();
+                } else if (datos.figura === "Rombo") {
+                    objeto = new Rombo();
+                } else if (datos.figura === "Triangulo") {
+                    objeto = new Triangulo();
+                } else if (datos.figura === "TrianguloRectangulo") {
+                    objeto = new TrianguloRectangulo();
+                }
                 papel.agregarObjeto(objeto);
-                console.log("Así llegó: ", objeto);
-                //papel.dibujar();
+                papel.dibujar();
             });
         }
 
@@ -120,7 +138,12 @@
     function Escucha() {
         this.objetoAgregado = function (objeto, ordenCapa) {
             console.log("Así se fue: ", objeto);
-            socket.emit("objetoAgregado", objeto);
+            socket.emit("objetoAgregado",
+                    {
+                        figura: objeto.obtenerNombre(),
+                        objeto: objeto,
+                        estilo: undefined
+                    });
         };
     }
 

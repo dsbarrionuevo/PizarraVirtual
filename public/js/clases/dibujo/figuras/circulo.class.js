@@ -10,6 +10,10 @@ Circulo.prototype = new Forma;
 function Circulo(x, y, radio, estilo) {
     Forma.call(this, x - radio, y - radio, radio * 2, radio * 2, estilo);
     this.radio = radio;
+    this.obtenerNombre = function () {
+        this.__proto__.obtenerNombre();
+        return "Circulo";
+    };
     this.dibujar = function (contexto) {
         this.__proto__.dibujar(contexto);
         this.estilo.preparar(contexto);

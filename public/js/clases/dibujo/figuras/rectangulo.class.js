@@ -1,6 +1,10 @@
 Rectangulo.prototype = new Forma;
 function Rectangulo(x, y, ancho, alto, estilo) {
     Forma.call(this, x, y, ancho, alto, estilo);
+    this.obtenerNombre = function () {
+        this.__proto__.obtenerNombre();
+        return "Rectangulo";
+    };
     this.dibujar = function (contexto) {
         //llamo al metodo del padre, si bien forma no posee este metodo, pero llama al metodo de visualizable
         this.__proto__.dibujar(contexto);

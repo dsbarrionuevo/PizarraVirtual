@@ -1,6 +1,10 @@
 Rombo.prototype = new Forma;
 function Rombo(x, y, ancho, alto, estilo) {
     Forma.call(this, x, y, ancho, alto, estilo);
+    this.obtenerNombre = function () {
+        this.__proto__.obtenerNombre();
+        return "Rombo";
+    };
     this.dibujar = function (contexto) {
         this.__proto__.dibujar(contexto);
         this.estilo.preparar(contexto);

@@ -47,8 +47,8 @@ socketServidor.on('connect', function (socketCliente) {
         socketCliente.broadcast.emit("mensajeNuevo", datos);
         handshake();//envio ACK al que envio el mensaje
     });
-    socketCliente.on('objetoAgregado', function (objeto) {
-        socketCliente.broadcast.emit('objetoAgregado', objeto);
+    socketCliente.on('objetoAgregado', function (datos) {
+        socketCliente.broadcast.emit('objetoAgregado', datos);
     });
     socketCliente.on('disconnect', function () {
         for (var i = 0; i < usuarios.length; i++) {
@@ -69,4 +69,4 @@ function Usuario(id, nombre) {
     };
 }
 
-servidorHttp.listen(80);
+servidorHttp.listen(8080);

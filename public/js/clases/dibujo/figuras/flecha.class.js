@@ -19,6 +19,10 @@ function Flecha(x, y, xf, yf, largoPunta, estilo) {
         //tambien podria ser un 5% del largo total de la flecha
         this.largoPunta = 10;
     }
+    this.obtenerNombre = function () {
+        this.__proto__.obtenerNombre();
+        return "Flecha";
+    };
     this.dibujar = function (contexto) {
         this.__proto__.dibujar(contexto);
         this.estilo.preparar(contexto);

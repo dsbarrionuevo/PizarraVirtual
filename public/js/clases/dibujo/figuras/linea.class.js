@@ -13,6 +13,10 @@ function Linea(x, y, xf, yf, estilo) {
     this.anchoLinea;
     this.xf=xf;
     this.yf=yf;
+    this.obtenerNombre = function () {
+        this.__proto__.obtenerNombre();
+        return "Linea";
+    };
     this.dibujar = function (contexto) {
         this.__proto__.dibujar(contexto);
         this.estilo.preparar(contexto);

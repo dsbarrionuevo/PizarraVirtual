@@ -1,6 +1,10 @@
 Triangulo.prototype = new Forma;
 function Triangulo(x, y, ancho, alto, estilo) {
     Forma.call(this, x, y, ancho, alto, estilo);
+    this.obtenerNombre = function () {
+        this.__proto__.obtenerNombre();
+        return "Triangulo";
+    };
     this.dibujar = function (contexto) {
         this.__proto__.dibujar(contexto);
         this.estilo.preparar(contexto);

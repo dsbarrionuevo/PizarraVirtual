@@ -18,9 +18,12 @@ function Visualizable(x, y, ancho, alto, estilo) {
         this.estilo = new Estilo();
     }
     //metodo abstracto
+    this.obtenerNombre = function () {
+    };
+    //metodo abstracto
     this.dibujar = function (contexto) {
     };
-    
+
     /**
      * _abstract
      * Resalta con un contorno particular el objeto visible
@@ -28,7 +31,7 @@ function Visualizable(x, y, ancho, alto, estilo) {
      */
     this.marcar = function (contexto) {
     };
-    
+
     /**
      * _abstract
      * Verifica si un punto está dentro del objeto visualizable

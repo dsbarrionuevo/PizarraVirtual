@@ -6,6 +6,10 @@ function RectanguloRedondeado(x, y, alto, ancho, radio, estilo) {
     if (this.radio === undefined) {
         this.radio = 5;//valor por defecto
     }
+    this.obtenerNombre = function () {
+        this.__proto__.obtenerNombre();
+        return "RectanguloRedondeado";
+    };
     this.dibujar = function (contexto) {
         this.__proto__.dibujar(contexto);
         this.estilo.preparar(contexto);
