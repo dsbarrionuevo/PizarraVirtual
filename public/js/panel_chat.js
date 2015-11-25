@@ -69,7 +69,20 @@
             evt.preventDefault();
         });
 
-        $("#btnEnviarMensaje").click(function () {
+        $("#btnEnviarMensaje").click(enviarMensaje);
+        $('#enviarMensaje textarea').on('focus', function () {
+            $('#enviarMensaje textarea').on('keypress', function (evt) {
+                if (evt.which === 13)
+                {
+                    enviarMensaje();
+                    evt.preventDefault();
+                    evt.which = null;
+                }
+            });
+        });
+
+        //funciones
+        function enviarMensaje() {
             if ($("#enviarMensaje textarea").val().trim().length > 0) {
                 var datos = {
                     remitente: usuario,
@@ -81,9 +94,8 @@
                     $("#enviarMensaje textarea").val("");
                 });
             }
-        });
+        }
 
-        //funciones
         function agregarNuevoMensaje(nombreUsuarioRemitente, mensaje, enviado) {
             //deberia poner el nombreUsuarioRemitente en alguna parte del html
             var claseEnviado = "mensajeRecibido";
