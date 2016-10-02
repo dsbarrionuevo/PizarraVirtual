@@ -18,13 +18,13 @@ function Forma(x, y, ancho, alto, estilo) {
         contexto.beginPath();
         contexto.strokeStyle = "#00f";
         contexto.lineWidth = 1;
-        contexto.rect(this.x-this.ancho, this.y-this.alto, this.ancho*2, this.alto*2);
+        contexto.rect(this.x - this.ancho, this.y - this.alto, this.ancho * 2, this.alto * 2);
         contexto.stroke();
         contexto.restore();
     };
-    
+
     // Esto es para probar la logica. Hay que mejorarlo...
-    this.desmarcar = function(contexto){
+    this.desmarcar = function (contexto) {
         contexto.save();
         contexto.beginPath();
         contexto.strokeStyle = "#fff";
@@ -32,8 +32,8 @@ function Forma(x, y, ancho, alto, estilo) {
         contexto.rect(this.x, this.y, this.ancho, this.alto);
         contexto.stroke();
         contexto.restore();
-    }
-    
+    };
+
     this.mover = function (x, y) {
         this.x = this.x + x;
         this.y = this.y + y;
@@ -43,6 +43,6 @@ function Forma(x, y, ancho, alto, estilo) {
         this.alto = this.alto + y;
     };
     this.rotar = function (angulo) {
-        
+
     };
 }

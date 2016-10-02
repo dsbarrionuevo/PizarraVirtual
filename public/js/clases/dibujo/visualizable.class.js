@@ -38,14 +38,14 @@ function Visualizable(x, y, ancho, alto, estilo) {
      * @param {float} x Posicion x del punto a verificar
      * @param {float} y Posicion y del punto a verificar
      * @returns {boolean} Devuelve verdadero si el punto pasado como parametro
-     * esta dentro del objeto visualizable, falso en cso contrario
+     * esta dentro del objeto visualizable, falso en caso contrario
      */
     this.intersecta = function (x, y) {
     };
 
     /**
      * _abstract
-     * Cambia la posicion del objeto
+     * Cambia la posicion del objeto 
      * @param {float} x Componente x del vector movimiento
      * @param {float} y Componente y del vector movimiento
      * @returns {undefined}
