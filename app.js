@@ -16,6 +16,14 @@ socketServidor.on('connect', function (socketCliente) {
     //socketCliente.broadcast.emit() //envia a todos los clientes menos a este cliente
     //...
     
+    //pruebas con nueva arq:
+    socketCliente.on("enviar_mensaje", function (datos, handshake) {
+        console.log(datos);
+        //socketCliente.broadcast.emit("enviar_mensaje", {datos:"locos!"});
+        socketServidor.emit("enviar_mensaje", {datos:"locos!"});
+    });
+    //... fin pruebas
+    
     socketCliente.on("nombreUsuarioNuevo", function (datos, handshake) {
         //verifico si no existe ya ese nombre de usuario
         var existeUsuario = false;
