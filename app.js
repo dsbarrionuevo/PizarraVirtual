@@ -20,7 +20,7 @@ socketServidor.on('connect', function (socketCliente) {
     socketCliente.on("enviar_mensaje", function (datos, handshake) {
         console.log(datos);
         //socketCliente.broadcast.emit("enviar_mensaje", {datos:"locos!"});
-        socketServidor.emit("enviar_mensaje", {datos:"locos!"});
+        socketServidor.emit("enviar_mensaje", {datos:"Hola!"});
     });
     //... fin pruebas
     

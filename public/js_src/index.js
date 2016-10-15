@@ -8,11 +8,10 @@
         puerto: "8080"
       }
     );
-    var comandoEnviarMensaje = new ComandoEnviarMensaje(new Mensaje("contenido del mensaje", "", ""));
-    cliente.controladorComandos.agregarComando(comandoEnviarMensaje);
+    cliente.controladorComandos.agregarComando(new ComandoEnviarMensaje());
     cliente.conectar();
     setTimeout(function(){
-      console.log("Trato de enviar");
+      var comandoEnviarMensaje = new ComandoEnviarMensaje(new Mensaje("alumno","profesor","Hola!"));
       cliente.controladorComandos.emitir(comandoEnviarMensaje);
     },400)
   });

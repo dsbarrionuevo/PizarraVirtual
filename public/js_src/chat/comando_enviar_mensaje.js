@@ -7,6 +7,7 @@ class ComandoEnviarMensaje extends Comando{
   ejecutar(datos){
     super.ejecutar(datos);
     //mensaje recibido
-    console.log("Mensaje recibido: " + this.mensaje.toString());
+    console.log("Mensaje recibido: ");
+    console.log(datos);
   }
 }
