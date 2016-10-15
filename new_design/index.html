@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Pizarra Virtual</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- CSS -->
+        <link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+        <!--<link href="css/bootstrap/bootstrap.theme.css" rel="stylesheet" />-->
+        <link href="css/font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet" />
+        <link href="css/estructura.css" rel="stylesheet" />
+        <!-- /CSS -->
+        <!-- JS -->
+        <script src="js/jquery/jquery-2.2.4.min.js"></script>
+        <!-- /JS -->
+    </head>
+    <body>
+        <main>
+            <div class="container-fluid" id="contenedor-principal">
+                <div class="row">
+                    <div class="col-sm-9" id="contenedor-central">
+                        <div id="contenedor-panel-herramientas">
+                            <button type="button" class="btn btn-default ">
+                                <i class="fa fa-mouse-pointer" aria-hidden="true"></i>
+                            </button>
+                            <button type="button" class="btn btn-default ">
+                                <i class="fa fa-arrows" aria-hidden="true"></i>
+                            </button>
+                            <button type="button" class="btn btn-default ">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </button>
+                            <button type="button" class="btn btn-default">
+                                <i class="fa fa-square-o" aria-hidden="true"></i>
+                            </button>
+                            <button type="button" class="btn btn-default">
+                                <i class="fa fa-circle-o" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <div id="contenedor-canvas-principal">
+                            <canvas id="canvas-principal" width="1000" height="1000">
+                            </canvas>
+                        </div>
+                        <div id="contenedor-panel-chat">
+                            <textarea id="textarea-chat" class="form-control"></textarea>
+                            <button class="btn btn-primary" id="btn-enviar-mensaje">
+                                Enviar
+                            </button>
+                        </div>
+                        <div id="contenedor-informacion-extra">
+                        </div>
+                    </div>
+                    <div class="col-sm-3" id="contenedor-lateral">
+                        <div id="contenedor-panel-opciones">
+                            <ul class="nav nav-pills nav-stacked">
+                                <li role="presentation" class="active"><a href="#">Opción 1</a></li>
+                                <li role="presentation"><a href="#">Opción 2</a></li>
+                                <li role="presentation"><a href="#">Opción 3</a></li>
+                            </ul>
+                        </div>
+                        <div id="contenedor-panel-sala">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
